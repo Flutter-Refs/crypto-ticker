@@ -81,9 +81,8 @@ class _PriceScreenState extends State<PriceScreen> {
       value: selectedCurrency,
       items: dropdownItems,
       onChanged: (value) => {
-        setState(
-          () => selectedCurrency = value!,
-        )
+        selectedCurrency = value!,
+        setExchangeRateData()
       },
     );
   }
@@ -99,7 +98,8 @@ class _PriceScreenState extends State<PriceScreen> {
     return CupertinoPicker(
       itemExtent: 32.0,
       onSelectedItemChanged: (selectedIndex) {
-        print(selectedIndex);
+        selectedCurrency = currenciesList[selectedIndex];
+        setExchangeRateData();
       },
       children: pickerItems,
     );
